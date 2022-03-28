@@ -2,11 +2,11 @@ package edu.wpi.cs3733.D22.teamZ;
 
 import java.util.*;
 
-public class LocationDAO implements ILocationDAO{
+public class LocationDAOImpl implements ILocationDAO{
 
     List <Location> locations;
 
-    public LocationDAO(){
+    public LocationDAOImpl(){
         locations = new ArrayList<Location>();
     }
 
