@@ -4,12 +4,16 @@ import java.util.*;
 
 public class LocationDAO implements ILocationDAO{
 
-    ArrayList <Location> locations = new ArrayList<Location>();
-    public List<Location> getAllLocations(){
-        List l = new ArrayList();
-        return l;
+    List <Location> locations;
+
+    public LocationDAO(){
+        locations = new ArrayList<Location>();
     }
-    public Location getLocation(String nodeID){
+
+    public List<Location> getAllLocations(){
+        return locations;
+    }
+    public Location getLocation(String nodeID){ //implement
         return new Location();
     }
     public void addLocation(Location loc){
