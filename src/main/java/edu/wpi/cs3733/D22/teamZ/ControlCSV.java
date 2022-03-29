@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.D22.teamZ;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,10 +9,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class ControlCSV {
+
+	public final void setPath(File path) {
+		this.path = path;
+	}
+
 	private File path;
 
-	public ControlCSV(File active){
-		path = active;
+	public ControlCSV(){
+		path = new File("");
 	}
 
 	public final void writeCSV(List<List<String>> data, String... headers){
@@ -66,7 +71,7 @@ public abstract class ControlCSV {
 		return ret;
 	}
 
-	public abstract void dataToObj();
-	public abstract List<List<String>> objToData(Object [] list);
+	public abstract void dataToObj(List<List<String>> data);
+	public abstract List<List<String>> objToData();
 
 }
