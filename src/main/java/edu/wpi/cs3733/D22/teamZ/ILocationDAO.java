@@ -5,7 +5,7 @@ import java.util.List;
 public interface ILocationDAO {
   List<Location> getAllLocations();
 
-  Location getLocation(String nodeID);
+  Location getLocationByID(String nodeID);
 
   void addLocation(Location loc);
 
