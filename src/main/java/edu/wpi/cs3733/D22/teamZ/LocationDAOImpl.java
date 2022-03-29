@@ -72,21 +72,22 @@ public class LocationDAOImpl implements ILocationDAO {
         return loc;
     }
 
-    public void addLocation(Location loc) {
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection("jdbc:derby:myDB");
-            PreparedStatement stmt =
-                    connection.prepareStatement(
-                            "INSERT INTO Location (NODEID, XCOORD, YCOORD, FLOOR, BUILDING, NODETYPE, LONGNAME, SHORTNAME)");
-            stmt.setString(1, loc.getNodeID());
-            stmt.setInt(2, loc.getXcoord());
-            stmt.setInt(3, loc.getYcoord());
-            stmt.setString(4, loc.getFloor());
-            stmt.setString(5, loc.getBuilding());
-            stmt.setString(6, loc.getNodeType());
-            stmt.setString(7, loc.getLongName());
-            stmt.setString(8, loc.getShortName());
+  public void addLocation(Location loc) {
+    Connection connection = null;
+    try {
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      PreparedStatement stmt =
+          connection.prepareStatement(
+              "INSERT INTO Location (NODEID, XCOORD, YCOORD, FLOOR, BUILDING, NODETYPE, LONGNAME, SHORTNAME)" +
+                      "values (?, ?, ?, ?, ?, ?, ?, ?)");
+      stmt.setString(1, loc.getNodeID());
+      stmt.setInt(2, loc.getXcoord());
+      stmt.setInt(3, loc.getYcoord());
+      stmt.setString(4, loc.getFloor());
+      stmt.setString(5, loc.getBuilding());
+      stmt.setString(6, loc.getNodeType());
+      stmt.setString(7, loc.getLongName());
+      stmt.setString(8, loc.getShortName());
 
             stmt.executeUpdate();
             connection.commit();
