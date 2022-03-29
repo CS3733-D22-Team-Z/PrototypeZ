@@ -59,5 +59,25 @@
                 <Font name="Segoe UI Bold" size="10.0" />
             </font>
         </JFXButton>
+        <Label layoutX="275.0" layoutY="81.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-translate-x: 126; -fx-translate-y: 10;" text="Status" textFill="#7b7b7b">
+            <font>
+                <Font name="Segoe UI Bold" size="9.0" />
+            </font>
+        </Label>
+        <ChoiceBox layoutX="402.0" layoutY="112.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: &quot;FFFFFF&quot;; -fx-background-radius: 2;">
+            <effect>
+                <DropShadow />
+            </effect>
+        </ChoiceBox>
+        <Label layoutX="277.0" layoutY="137.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-translate-x: 126; -fx-translate-y: 10;" text="Staff Assigned" textFill="#7b7b7b">
+            <font>
+                <Font name="Segoe UI Bold" size="9.0" />
+            </font>
+        </Label>
+        <TextField layoutX="402.0" layoutY="170.0">
+            <effect>
+                <DropShadow />
+            </effect>
+        </TextField>
     </children>
 </AnchorPane>
