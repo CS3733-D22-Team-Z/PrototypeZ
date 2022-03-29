@@ -53,7 +53,7 @@ public abstract class ControlCSV {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		String line;
+		String line = in.nextLine();
 		List<List<String>> ret = new ArrayList<>();
 		int c = 0;
 
