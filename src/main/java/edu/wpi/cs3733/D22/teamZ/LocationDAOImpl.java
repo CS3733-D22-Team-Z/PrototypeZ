@@ -78,7 +78,8 @@ public class LocationDAOImpl implements ILocationDAO {
       connection = DriverManager.getConnection("jdbc:derby:myDB");
       PreparedStatement stmt =
           connection.prepareStatement(
-              "INSERT INTO Location (NODEID, XCOORD, YCOORD, FLOOR, BUILDING, NODETYPE, LONGNAME, SHORTNAME)");
+              "INSERT INTO Location (NODEID, XCOORD, YCOORD, FLOOR, BUILDING, NODETYPE, LONGNAME, SHORTNAME)"
+                  + "values (?, ?, ?, ?, ?, ?, ?, ?)");
       stmt.setString(1, loc.getNodeID());
       stmt.setInt(2, loc.getXcoord());
       stmt.setInt(3, loc.getYcoord());
