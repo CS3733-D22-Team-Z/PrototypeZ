@@ -3,13 +3,13 @@ package edu.wpi.cs3733.D22.teamZ;
 import java.util.List;
 
 public interface ILocationDAO {
-  List<Location> getAllLocations();
+    List<Location> getAllLocations();
 
-  Location getLocationByID(String nodeID);
+    Location getLocationByID(String nodeID);
 
-  void addLocation(Location loc);
+    void addLocation(Location loc);
 
-  void updateLocation(Location loc);
+    void updateLocation(Location loc);
 
-  void deleteLocation(Location loc);
+    void deleteLocation(Location loc);
 }
