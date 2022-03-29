@@ -57,7 +57,8 @@ public abstract class ControlCSV {
 		List<List<String>> ret = new ArrayList<>();
 		int c = 0;
 
-		while ((line = in.nextLine()) != null){
+		while (in.hasNextLine()){
+			line = in.nextLine();
 			String [] temp = line.split(",");
 			ret.add(List.of(temp));
 
