@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamZ.controllers.medicineRequestController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F6F6F6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamZ.controllers.MedicineRequestController">
    <children>
        <JFXButton layoutX="23.0" onAction="#backToDashboard" style="-fx-background-color: #0075FF; -fx-background-radius: 2; -fx-translate-x: 126; -fx-translate-y: 13; -fx-pref-height: 26; -fx-pref-width: 128;" text="Back to dashboard" textFill="WHITE">
          <font>

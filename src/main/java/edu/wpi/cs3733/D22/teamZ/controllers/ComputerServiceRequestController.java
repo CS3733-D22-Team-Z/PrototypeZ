@@ -13,16 +13,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ComputerServiceRequestController {
-  @FXML private Button backButton;
-  @FXML private Button submitButton;
-  @FXML private TextField roomNumberField;
-  @FXML private TextArea descriptionArea;
+    @FXML private Button backButton;
+    @FXML private Button submitButton;
+    @FXML private TextField roomNumberField;
+    @FXML private TextArea descriptionArea;
 
-  @FXML
-  void backToDashboard() throws IOException {
-    Stage primaryStage = (Stage) backButton.getScene().getWindow();
-    Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
-    Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-  }
+    @FXML
+    void backToDashboard() throws IOException {
+        Stage primaryStage = (Stage) backButton.getScene().getWindow();
+        Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+    }
 }

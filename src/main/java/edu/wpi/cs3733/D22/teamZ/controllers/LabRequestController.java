@@ -12,15 +12,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LabRequestController {
-  @FXML private JFXButton backButton;
+    @FXML private JFXButton backButton;
 
-  @FXML
-  public void onBackButtonClicked(ActionEvent event) throws IOException {
-    System.out.println("Lets go back now");
-
-    Stage mainStage = (Stage) backButton.getScene().getWindow();
-    Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
-    Scene scene = new Scene(root);
-    mainStage.setScene(scene);
-  }
+    @FXML
+    public void onBackButtonClicked(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage) backButton.getScene().getWindow();
+        Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+    }
 }
