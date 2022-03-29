@@ -4,12 +4,8 @@ import java.util.List;
 
 public interface ILocationDAO {
     List<Location> getAllLocations();
-
     Location getLocationByID(String nodeID);
-
     void addLocation(Location loc);
-
     void updateLocation(Location loc);
-
     void deleteLocation(Location loc);
 }
