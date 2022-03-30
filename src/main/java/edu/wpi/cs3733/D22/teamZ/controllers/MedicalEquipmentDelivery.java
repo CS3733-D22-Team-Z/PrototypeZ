@@ -119,6 +119,9 @@ public class MedicalEquipmentDelivery {
         && !enterNodeType.getText().trim().isEmpty()
         && !equipmentDropDown.getSelectionModel().isEmpty()) {
       submitButton.setDisable(false);
+    } else {
+      // If a field becomes empty, re-disable submit button
+      submitButton.setDisable(true);
     }
   }
 }
