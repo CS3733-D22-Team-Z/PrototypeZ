@@ -82,7 +82,6 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     return temp;
   }
 
-
   public void addMedEquipReq(MedEquipReq req) {
     Connection connection = null;
     try {
