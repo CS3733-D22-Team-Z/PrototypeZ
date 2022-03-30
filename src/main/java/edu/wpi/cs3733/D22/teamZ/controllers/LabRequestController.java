@@ -1,11 +1,10 @@
 package edu.wpi.cs3733.D22.teamZ.controllers;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733.D22.teamZ.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import edu.wpi.cs3733.D22.teamZ.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,11 +72,11 @@ public class LabRequestController implements Initializable {
 
     // Link onValueChanged to timeSelected
     timeSlider
-            .valueProperty()
-            .addListener(
-                    (observable, oldValue, newValue) -> {
-                      timeSelected();
-                    });
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              timeSelected();
+            });
   }
 
   // Setup the time canvas

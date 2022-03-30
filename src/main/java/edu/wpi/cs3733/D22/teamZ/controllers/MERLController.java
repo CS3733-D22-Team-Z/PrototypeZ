@@ -2,11 +2,12 @@ package edu.wpi.cs3733.D22.teamZ.controllers;
 
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import edu.wpi.cs3733.D22.teamZ.App;
+import edu.wpi.cs3733.D22.teamZ.MedEquipReq;
+import edu.wpi.cs3733.D22.teamZ.entities.MERL;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import edu.wpi.cs3733.D22.teamZ.App;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,140 +26,195 @@ import javafx.util.Callback;
 
 public class MERLController implements Initializable {
 
-    // Each column on the main request list.
-    @FXML private JFXTreeTableColumn<RequestRow, String> deviceColumn;
-    @FXML private JFXTreeTableColumn<RequestRow, String> idColumn;
-    @FXML private JFXTreeTableColumn<RequestRow, String> assigneeColumn;
-    @FXML private JFXTreeTableColumn<RequestRow, String> statusColumn;
+  // Each column on the main request list.
+  @FXML private JFXTreeTableColumn<RequestRow, String> deviceColumn;
+  @FXML private JFXTreeTableColumn<RequestRow, String> idColumn;
+  @FXML private JFXTreeTableColumn<RequestRow, String> assigneeColumn;
+  @FXML private JFXTreeTableColumn<RequestRow, String> statusColumn;
 
-    // Table that lists all requests.
-    @FXML private JFXTreeTableView requestTable;
+  // Table that lists all requests.
+  @FXML private JFXTreeTableView requestTable;
 
-    // Button that re-fetches requests and refreshes table.
-    @FXML private JFXButton refreshButton;
+  // Button that re-fetches requests and refreshes table.
+  @FXML private JFXButton refreshButton;
 
-    // Button that goes back to the default screen.
-    @FXML private JFXButton backButton;
+  // Button that goes back to the default screen.
+  @FXML private JFXButton backButton;
 
-    // Buttons to select the sorting/filter parameters.
-    @FXML private JFXButton assigneeButton;
-    @FXML private JFXButton idButton;
-    @FXML private JFXButton deviceButton;
-    @FXML private JFXButton statusButton;
+  // Buttons to select the sorting/filter parameters.
+  @FXML private JFXButton assigneeButton;
+  @FXML private JFXButton idButton;
+  @FXML private JFXButton deviceButton;
+  @FXML private JFXButton statusButton;
 
-    // Drop-down box that selects which data type to filter by.
-    @FXML private JFXComboBox<String> filterCBox;
+  // Drop-down box that selects which data type to filter by.
+  @FXML private JFXComboBox<String> filterCBox;
 
-    // Lists that display details about a selection.
-    @FXML private JFXListView<Label> identifierList;
-    @FXML private JFXListView dataList;
+  // Lists that display details about a selection.
+  @FXML private JFXListView<Label> identifierList;
+  @FXML private JFXListView dataList;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        String[] identifiers = {"ID", "Device", "Assignee", "Status"};
+  // List of RequestRows currently being displayed on the table
+  ObservableList<RequestRow> requests;
 
-        for (int i = 0; i < 4; i++) {
-            Label ID = new Label();
-            ID.setText(identifiers[i]);
-            identifierList.getItems().add(ID);
-        }
+  // The Entity class to read data from
+  private MERL MERLdata;
 
-        filterCBox.getItems().addAll("Test 1", "Test 2", "Test 3");
+  public MERLController() {
+    // Only temporary!
+    this.MERLdata = new MERL();
+  }
 
-        idColumn.setCellValueFactory(
-                new Callback<
-                        TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(
-                            TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
-                        return param.getValue().getValue().id;
-                    }
-                });
-
-        deviceColumn.setCellValueFactory(param -> param.getValue().getValue().device);
-        assigneeColumn.setCellValueFactory(param -> param.getValue().getValue().assignee);
-        statusColumn.setCellValueFactory(param -> param.getValue().getValue().status);
-
-        ObservableList<RequestRow> requests = FXCollections.observableArrayList();
-        requests.add(new RequestRow("1", "Device 1", "Dr. One", "Not Complete"));
-        requests.add(new RequestRow("2", "Device 2", "Dr. Two", "Complete"));
-
-        final TreeItem<RequestRow> root =
-                new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
-        requestTable.setRoot(root);
-
-        requestTable
-                .getSelectionModel()
-                .selectedItemProperty()
-                .addListener(
-                        (obs, oldSelection, newSelection) -> {
-                            RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
-                            System.out.println("Selected #" + sel.getValue().id.getValue());
-                            loadRow(sel.getValue());
-                        });
-        requestTable.setShowRoot(false);
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    // Create labels for field values
+    for (int i = 0; i < MERLdata.getIdentifiers().length; i++) {
+      Label ID = new Label();
+      ID.setText(MERLdata.getIdentifiers()[i]);
+      identifierList.getItems().add(ID);
     }
 
-    // Called whenever one of the filter buttons are clicked.
-    public void filterClicked(ActionEvent event) {
-        JFXButton buttonPressed = (JFXButton) event.getTarget();
-        System.out.println(buttonPressed.getText());
+    // Fill the filter box with test data
+    filterCBox.getItems().addAll("Test 1", "Test 2", "Test 3");
+
+    // Replace with lambda eventually
+    // Set each column so that it displays the right value from each RequestRow
+    idColumn.setCellValueFactory(
+        new Callback<
+            TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
+          @Override
+          public ObservableValue<String> call(
+              TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
+            return param.getValue().getValue().id;
+          }
+        });
+
+    deviceColumn.setCellValueFactory(param -> param.getValue().getValue().device);
+    assigneeColumn.setCellValueFactory(param -> param.getValue().getValue().assignee);
+    statusColumn.setCellValueFactory(param -> param.getValue().getValue().status);
+
+    requests = FXCollections.observableArrayList();
+
+    // Add a selected listener
+    requestTable
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
+              System.out.println("Selected #" + sel.getValue().id.getValue());
+              loadRow(sel.getValue().id.getValue());
+            });
+    requestTable.setShowRoot(false);
+
+    // Initialize requests
+    createRRList();
+  }
+
+  // Called whenever one of the filter buttons are clicked.
+  public void filterClicked(ActionEvent event) {
+    JFXButton buttonPressed = (JFXButton) event.getTarget();
+    System.out.println(buttonPressed.getText());
+  }
+
+  // Called whenever the refresh button is clicked.
+  public void refreshClicked(ActionEvent event) {
+    System.out.println(refreshButton.getText());
+
+    // Reload requests
+    MERLdata.loadRequests();
+
+    // Reload table
+    createRRList();
+  }
+
+  // Called whenever the filter select was set?
+  public void filterSet(ActionEvent event) {
+    System.out.println(filterCBox.getSelectionModel().getSelectedItem());
+  }
+
+  // Called whenever the back button is clicked.
+  public void backClicked() throws IOException {
+    Stage mainStage = (Stage) backButton.getScene().getWindow();
+    Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
+    Scene scene = new Scene(root);
+    mainStage.setScene(scene);
+  }
+
+  public void createRRList() {
+    // Clear old requests
+    requests.clear();
+
+    // Iterate through each MedEquipReq in entity and create RequestRow for each
+    for (MedEquipReq MERequest : MERLdata.getCurrentRequests()) {
+      requests.add(
+          new RequestRow(
+              MERequest.getRequestID(),
+              MERequest.getEquipment(),
+              MERequest.getIssuer(),
+              MERequest.getStatus()));
     }
 
-    // Called whenever the refresh button is clicked.
-    public void refreshClicked(ActionEvent event) {
-        System.out.println(refreshButton.getText());
-    }
+    // Set root's children to requests, and add root to table.
+    final TreeItem<RequestRow> root =
+        new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
+    requestTable.setRoot(root);
+  }
 
-    // Called whenever the filter select was set?
-    public void filterSet(ActionEvent event) {
-        System.out.println(filterCBox.getSelectionModel().getSelectedItem());
-    }
+  // Load a MedEquipReq into the Details row.
+  public void loadRow(String MeqID) {
+    // Clear out current details data
+    dataList.getItems().clear();
 
-    // Called whenever the back button is clicked.
-    public void backClicked() throws IOException {
-        Stage mainStage = (Stage) backButton.getScene().getWindow();
-        Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
-        Scene scene = new Scene(root);
-        mainStage.setScene(scene);
-    }
+    // Retrieve the MedEquipReq with the given ID.
+    MedEquipReq selectedReq = MERLdata.getRequestFromID(MeqID);
 
-    // Loads a RequestRow into the Details section.
-    public void loadRow(RequestRow row) {
-        dataList.getItems().clear();
-        for (int i = 0; i < 4; i++) {
-            Label data = new Label();
-            switch (i) {
-                case 0:
-                    data.setText(row.id.getValue());
-                    break;
-                case 1:
-                    data.setText(row.device.getValue());
-                    break;
-                case 2:
-                    data.setText(row.assignee.getValue());
-                    break;
-                case 3:
-                    data.setText(row.status.getValue());
-                    break;
-            }
-            dataList.getItems().add(data);
-        }
-    }
+    // "ID", "Device", "Assignee", "Handler", "Status", "Current Location", "Target Location"
+    // Add and fill labels with relevant information.
+    for (int i = 0; i < MERLdata.getIdentifiers().length; i++) {
+      Label data = new Label();
+      switch (i) {
+        case 0:
+          data.setText(selectedReq.getRequestID());
+          break;
+        case 1:
+          data.setText(selectedReq.getEquipment());
+          break;
+        case 2:
+          data.setText(selectedReq.getIssuer());
+          break;
+        case 3:
+          data.setText(selectedReq.getHandler());
+          break;
+        case 4:
+          data.setText(selectedReq.getStatus());
+          break;
+        case 5:
+          data.setText(selectedReq.getCurrentLoc());
+          break;
+        case 6:
+          data.setText(selectedReq.getTargetLoc());
+          break;
+      }
 
-    // Data structure to represent a row in the request list.
-    // Does this belong here or in an entity?
-    class RequestRow extends RecursiveTreeObject<RequestRow> {
-        SimpleStringProperty id;
-        SimpleStringProperty device;
-        SimpleStringProperty assignee;
-        SimpleStringProperty status;
-
-        public RequestRow(String newId, String newDevice, String newAssignee, String newStatus) {
-            id = new SimpleStringProperty(newId);
-            device = new SimpleStringProperty(newDevice);
-            assignee = new SimpleStringProperty(newAssignee);
-            status = new SimpleStringProperty(newStatus);
-        }
+      // Add label to dataList
+      dataList.getItems().add(data);
     }
+  }
+
+  // Data structure to represent a row in the request list.
+  // Does this belong here or in an entity?
+  class RequestRow extends RecursiveTreeObject<RequestRow> {
+    SimpleStringProperty id;
+    SimpleStringProperty device;
+    SimpleStringProperty assignee;
+    SimpleStringProperty status;
+
+    public RequestRow(String newId, String newDevice, String newAssignee, String newStatus) {
+      id = new SimpleStringProperty(newId);
+      device = new SimpleStringProperty(newDevice);
+      assignee = new SimpleStringProperty(newAssignee);
+      status = new SimpleStringProperty(newStatus);
+    }
+  }
 }
