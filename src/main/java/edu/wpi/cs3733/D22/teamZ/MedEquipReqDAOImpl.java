@@ -11,7 +11,6 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     list = new ArrayList<>();
   }
 
-
   public List<MedEquipReq> getAllMedEquipReq() {
     Connection connection = null;
     try {
@@ -87,9 +86,9 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     try {
       connection = DriverManager.getConnection("jdbc:derby:myDB");
       PreparedStatement stmt =
-              connection.prepareStatement(
-                      "INSERT INTO MEDEQUIPREQ (REQUESTID, STATUS, ISSUER, HANDLER, EQUIPMENT, CURRENTLOC, TARGETLOC) "
-                              + "values (?, ?, ?, ?, ?, ?, ?)");
+          connection.prepareStatement(
+              "INSERT INTO MEDEQUIPREQ (REQUESTID, STATUS, ISSUER, HANDLER, EQUIPMENT, CURRENTLOC, TARGETLOC) "
+                  + "values (?, ?, ?, ?, ?, ?, ?)");
       stmt.setString(1, req.getRequestID());
       stmt.setString(2, req.getStatus());
       stmt.setString(3, req.getIssuer());

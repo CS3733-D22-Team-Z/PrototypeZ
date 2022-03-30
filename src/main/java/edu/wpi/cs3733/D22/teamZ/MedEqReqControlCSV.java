@@ -1,56 +1,54 @@
 package edu.wpi.cs3733.D22.teamZ;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedEqReqControlCSV extends ControlCSV{
-	private String [] headers = {"RequestID", "status", "issuer", "handler", "equipment", "currentLoc", "targetLoc"};
+public class MedEqReqControlCSV extends ControlCSV {
+  private String[] headers = {
+    "RequestID", "status", "issuer", "handler", "equipment", "currentLoc", "targetLoc"
+  };
 
-	protected void writeMedReqCSV(List<MedEquipReq> in){
-		writeCSV(objToData(in), headers);
-	}
-	protected List<MedEquipReq> readMedReqCSV() throws IOException{
-		return dataToObj(readCSV());
-	}
+  public MedEqReqControlCSV(File path) {
+    this.setPath(path);
+  }
 
-	private List<MedEquipReq> dataToObj(List<List<String>> data) {
-		List<MedEquipReq> ret = new ArrayList<>();
+  protected void writeMedReqCSV(List<MedEquipReq> in) {
+    writeCSV(objToData(in), headers);
+  }
 
-		for (List<String> a:data) {
-			ret.add(
-					new MedEquipReq(
-							a.get(0),
-							a.get(1),
-							a.get(2),
-							a.get(3),
-							a.get(5),
-							a.get(6),
-							a.get(7)
-					)
-			);
-		}
-		return ret;
-	}
+  protected List<MedEquipReq> readMedReqCSV() throws IOException {
+    return dataToObj(readCSV());
+  }
 
-	private List<List<String>> objToData(List<MedEquipReq> in) {
-		List<List<String>> ret = new ArrayList<>();
-		for(MedEquipReq a: in){
-			List<String> entry =
-					new ArrayList<>(
-							List.of(
-									new String [] {
-											a.getRequestID(),
-											a.getStatus(),
-											a.getIssuer(),
-											a.getHandler(),
-											a.getEquipment(),
-											a.getCurrentLoc(),
-											a.getTargetLoc()
-									}));
-			ret.add(entry);
-		}
-		return ret;
-	}
+  private List<MedEquipReq> dataToObj(List<List<String>> data) {
+    List<MedEquipReq> ret = new ArrayList<>();
 
+    for (List<String> a : data) {
+      ret.add(
+          new MedEquipReq(a.get(0), a.get(1), a.get(2), a.get(3), a.get(4), a.get(5), a.get(6)));
+    }
+    return ret;
+  }
+
+  private List<List<String>> objToData(List<MedEquipReq> in) {
+    List<List<String>> ret = new ArrayList<>();
+    for (MedEquipReq a : in) {
+      List<String> entry =
+          new ArrayList<>(
+              List.of(
+                  new String[] {
+                    a.getRequestID(),
+                    a.getStatus(),
+                    a.getIssuer(),
+                    a.getHandler(),
+                    a.getEquipment(),
+                    a.getCurrentLoc(),
+                    a.getTargetLoc()
+                  }));
+      ret.add(entry);
+    }
+    return ret;
+  }
 }

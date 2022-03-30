@@ -1,8 +1,8 @@
 package edu.wpi.cs3733.D22.teamZ.controllers;
 
 import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733.D22.teamZ.App;
 import edu.wpi.cs3733.D22.teamZ.*;
+import edu.wpi.cs3733.D22.teamZ.App;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +23,6 @@ public class MedicalEquipmentDelivery {
   @FXML private JFXButton backButton;
   @FXML private JFXButton resetButton;
   @FXML private JFXButton submitButton;
-
 
   @FXML private Label header;
   @FXML private Label objectBodyText;
@@ -99,15 +98,15 @@ public class MedicalEquipmentDelivery {
     MedEquipReq temp = new MedEquipReq();
     temp.setRequestID("REQ" + num);
 
-    temp.setStatus("Processing"); //default
+    temp.setStatus("Processing"); // default
     temp.setEquipment(equipmentDropDown.getValue().toString());
-    temp.setHandler("Jake"); //temp
-    temp.setIssuer("Pat"); //temp
+    temp.setHandler("Jake"); // temp
+    temp.setIssuer("Pat"); // temp
     temp.setCurrentLoc("FDEPT00101"); // temp
 
     // FDEPT00102
     String target =
-            "F" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
+        "F" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
     temp.setTargetLoc(target);
 
     im1.addMedEquipReq(temp);
