@@ -1,77 +1,77 @@
 package edu.wpi.cs3733.D22.teamZ;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public abstract class ControlCSV {
 
-	public final void setPath(File path) {
-		this.path = path;
-	}
+  private File path;
 
-	private File path;
+  public ControlCSV() {
+    path = new File("");
+  }
 
-	public ControlCSV(){
-		path = new File("");
-	}
+  public void setPath(File path) {
+    this.path = path;
+  }
 
-	public final void writeCSV(List<List<String>> data, String... headers){
-		String fLine = String.join(",", headers);
-		FileWriter file = null;
-		try {
-			file = new FileWriter(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+  protected final void writeCSV(List<List<String>> in, String... headers) {
+    String fLine = String.join(",", headers);
+    FileWriter file = null;
+    try {
+      file = new FileWriter(path);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
-		try {
-			file.write(fLine + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		int n = data.get(0).size();
+    try {
+      file.write(fLine + "\n");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    // List<List<String>> data = objToData(in);
 
-		for (List<String> a:data) {
+    // int n = data.get(0).size();
 
-			String line = String.join(",", a);
+    for (List<String> a : in) {
 
-			line+="\n";
+      String line = String.join(",", a);
 
-			try {
-				file.write(line);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+      line += "\n";
 
-	}
+      try {
+        file.write(line);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
 
-	public final List<List<String>> readCSV(){
-		Scanner in = null;
-		try {
-			in = new Scanner(path);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		String line = in.nextLine();
-		List<List<String>> ret = new ArrayList<>();
-		int c = 0;
+  protected final List<List<String>> readCSV() throws IOException {
+    FileReader temp = null;
+    try {
+      temp = new FileReader(path);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    BufferedReader in = new BufferedReader(temp);
 
-		while (in.hasNextLine()){
-			line = in.nextLine();
-			String [] temp = line.split(",");
-			ret.add(List.of(temp));
+    String line = null;
+    try {
+      line = in.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    List<List<String>> mid = new ArrayList<>();
+    int c = 0;
 
-		}
-		return ret;
-	}
+    while ((line = in.readLine()) != null) {
+      String[] split = line.split(",");
+      mid.add(List.of(split));
+    }
+    in.close();
 
-	public abstract void dataToObj(List<List<String>> data);
-	public abstract List<List<String>> objToData();
-
+    return mid;
+  }
 }
