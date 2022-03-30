@@ -111,4 +111,14 @@ public class MedicalEquipmentDelivery {
 
     im1.addMedEquipReq(temp);
   }
+
+  @FXML
+  private void validateButton() {
+    if (!enterRoomNumber.getText().trim().isEmpty()
+        && !enterFloorNumber.getText().trim().isEmpty()
+        && !enterNodeType.getText().trim().isEmpty()
+        && !equipmentDropDown.getSelectionModel().isEmpty()) {
+      submitButton.setDisable(false);
+    }
+  }
 }

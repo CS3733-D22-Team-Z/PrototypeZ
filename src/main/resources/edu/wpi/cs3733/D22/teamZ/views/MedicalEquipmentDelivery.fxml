@@ -31,7 +31,7 @@
                 <Font name="Segoe UI Bold" size="9.0" />
             </font>
         </Label>
-        <TextField fx:id="enterRoomNumber" layoutX="149.0" layoutY="114.0" promptText="Enter room number">
+        <TextField fx:id="enterRoomNumber" layoutX="149.0" layoutY="114.0" onKeyReleased="#validateButton" promptText="Enter room number">
             <effect>
                 <DropShadow />
             </effect>
@@ -44,12 +44,12 @@
                 <Font name="Segoe UI Bold" size="9.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="equipmentDropDown" layoutX="149.0" layoutY="285.0" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: &quot;FFFFFF&quot;; -fx-background-radius: 2;">
+        <ChoiceBox fx:id="equipmentDropDown" layoutX="149.0" layoutY="285.0" onMouseExited="#validateButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: &quot;FFFFFF&quot;; -fx-background-radius: 2;">
             <effect>
                 <DropShadow />
             </effect>
         </ChoiceBox>
-        <JFXButton fx:id="submitButton" layoutX="23.0" layoutY="322.0" onAction="#onSubmitButtonClicked" prefWidth="111.0" ripplerFill="#0075ff" style="-fx-background-radius: 2; -fx-translate-y: 13; -fx-translate-x: 126; -fx-pref-width: 70; -fx-pref-height: 26; -fx-background-color: #0075FF; -fx-font-family: &quot;Segoe UI&quot;;" text=" Submit" textFill="WHITE">
+        <JFXButton fx:id="submitButton" disable="true" layoutX="23.0" layoutY="322.0" onAction="#onSubmitButtonClicked" prefWidth="111.0" ripplerFill="#0075ff" style="-fx-background-radius: 2; -fx-translate-y: 13; -fx-translate-x: 126; -fx-pref-width: 70; -fx-pref-height: 26; -fx-background-color: #0075FF; -fx-font-family: &quot;Segoe UI&quot;;" text=" Submit" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="10.0" />
             </font>
@@ -84,7 +84,7 @@
                 <Font name="Segoe UI Bold" size="9.0" />
             </font>
         </Label>
-        <TextField fx:id="enterFloorNumber" layoutX="149.0" layoutY="172.0" promptText="Enter floor number">
+        <TextField fx:id="enterFloorNumber" layoutX="149.0" layoutY="172.0" onKeyReleased="#validateButton" promptText="Enter floor number">
             <effect>
                 <DropShadow />
             </effect>
@@ -97,7 +97,7 @@
                 <Font name="Segoe UI Bold" size="9.0" />
             </font>
         </Label>
-        <TextField fx:id="enterNodeType" layoutX="148.0" layoutY="231.0" promptText="Enter nodeType">
+        <TextField fx:id="enterNodeType" layoutX="148.0" layoutY="231.0" onKeyReleased="#validateButton" promptText="Enter nodeType">
             <effect>
                 <DropShadow />
             </effect>
