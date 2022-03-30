@@ -4,9 +4,10 @@ import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import edu.wpi.cs3733.D22.teamZ.App;
 import edu.wpi.cs3733.D22.teamZ.MedEquipReq;
-import edu.wpi.cs3733.D22.teamZ.entities.MERL;
+import edu.wpi.cs3733.D22.teamZ.MedEquipReqDAOImpl;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -54,23 +55,34 @@ public class MERLController implements Initializable {
   @FXML private JFXListView<Label> identifierList;
   @FXML private JFXListView dataList;
 
-  // List of RequestRows currently being displayed on the table
-  ObservableList<RequestRow> requests;
+  // List of identifiers for each
+  private String[] identifiers = {
+          "ID", "Device", "Assignee", "Handler", "Status", "Current Location", "Target Location"
+  };
 
-  // The Entity class to read data from
-  private MERL MERLdata;
+  // List of MedEquipReq that represents raw data
+  private List<MedEquipReq> rawRequests;
+
+  // List of RequestRows currently being displayed on the table
+  private ObservableList<RequestRow> requests;
+
+  // Database object
+  private MedEquipReqDAOImpl database;
 
   public MERLController() {
-    // Only temporary!
-    this.MERLdata = new MERL();
+    // Create new database object
+    database = new MedEquipReqDAOImpl();
+
+    // Grab data
+    loadRequests();
   }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     // Create labels for field values
-    for (int i = 0; i < MERLdata.getIdentifiers().length; i++) {
+    for (int i = 0; i < identifiers.length; i++) {
       Label ID = new Label();
-      ID.setText(MERLdata.getIdentifiers()[i]);
+      ID.setText(identifiers[i]);
       identifierList.getItems().add(ID);
     }
 
@@ -80,14 +92,14 @@ public class MERLController implements Initializable {
     // Replace with lambda eventually
     // Set each column so that it displays the right value from each RequestRow
     idColumn.setCellValueFactory(
-        new Callback<
-            TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
-          @Override
-          public ObservableValue<String> call(
-              TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
-            return param.getValue().getValue().id;
-          }
-        });
+            new Callback<
+                    TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
+              @Override
+              public ObservableValue<String> call(
+                      TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
+                return param.getValue().getValue().id;
+              }
+            });
 
     deviceColumn.setCellValueFactory(param -> param.getValue().getValue().device);
     assigneeColumn.setCellValueFactory(param -> param.getValue().getValue().assignee);
@@ -97,14 +109,14 @@ public class MERLController implements Initializable {
 
     // Add a selected listener
     requestTable
-        .getSelectionModel()
-        .selectedItemProperty()
-        .addListener(
-            (obs, oldSelection, newSelection) -> {
-              RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
-              System.out.println("Selected #" + sel.getValue().id.getValue());
-              loadRow(sel.getValue().id.getValue());
-            });
+            .getSelectionModel()
+            .selectedItemProperty()
+            .addListener(
+                    (obs, oldSelection, newSelection) -> {
+                      RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
+                      System.out.println("Selected #" + sel.getValue().id.getValue());
+                      loadRow(sel.getValue().id.getValue());
+                    });
     requestTable.setShowRoot(false);
 
     // Initialize requests
@@ -122,7 +134,7 @@ public class MERLController implements Initializable {
     System.out.println(refreshButton.getText());
 
     // Reload requests
-    MERLdata.loadRequests();
+    loadRequests();
 
     // Reload table
     createRRList();
@@ -146,18 +158,18 @@ public class MERLController implements Initializable {
     requests.clear();
 
     // Iterate through each MedEquipReq in entity and create RequestRow for each
-    for (MedEquipReq MERequest : MERLdata.getCurrentRequests()) {
+    for (MedEquipReq MERequest : rawRequests) {
       requests.add(
-          new RequestRow(
-              MERequest.getRequestID(),
-              MERequest.getEquipment(),
-              MERequest.getIssuer(),
-              MERequest.getStatus()));
+              new RequestRow(
+                      MERequest.getRequestID(),
+                      MERequest.getEquipment(),
+                      MERequest.getIssuer(),
+                      MERequest.getStatus()));
     }
 
     // Set root's children to requests, and add root to table.
     final TreeItem<RequestRow> root =
-        new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
+            new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
     requestTable.setRoot(root);
   }
 
@@ -167,11 +179,11 @@ public class MERLController implements Initializable {
     dataList.getItems().clear();
 
     // Retrieve the MedEquipReq with the given ID.
-    MedEquipReq selectedReq = MERLdata.getRequestFromID(MeqID);
+    MedEquipReq selectedReq = getRequestFromID(MeqID);
 
     // "ID", "Device", "Assignee", "Handler", "Status", "Current Location", "Target Location"
     // Add and fill labels with relevant information.
-    for (int i = 0; i < MERLdata.getIdentifiers().length; i++) {
+    for (int i = 0; i < identifiers.length; i++) {
       Label data = new Label();
       switch (i) {
         case 0:
@@ -200,6 +212,14 @@ public class MERLController implements Initializable {
       // Add label to dataList
       dataList.getItems().add(data);
     }
+  }
+
+  public void loadRequests() {
+    rawRequests = database.getAllMedEquipReq();
+  }
+
+  public MedEquipReq getRequestFromID(String MeqID) {
+    return database.getMedEquipReqByID(MeqID);
   }
 
   // Data structure to represent a row in the request list.
