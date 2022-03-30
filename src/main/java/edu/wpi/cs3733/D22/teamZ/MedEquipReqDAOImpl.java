@@ -11,6 +11,7 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     list = new ArrayList<>();
   }
 
+
   public List<MedEquipReq> getAllMedEquipReq() {
     Connection connection = null;
     try {
@@ -81,15 +82,63 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     return temp;
   }
 
+
   public void addMedEquipReq(MedEquipReq req) {
-    // TODO
+    Connection connection = null;
+    try {
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      PreparedStatement stmt =
+          connection.prepareStatement(
+              "INSERT INTO MEDEQUIPREQ (reqID, status, issuer, handler, equiptment, currentLoc, targetLoc)"
+                  + "values (?, ?, ?, ?, ?, ?, ?)");
+      stmt.setString(1, req.getRequestID());
+      stmt.setString(2, req.getStatus());
+      stmt.setString(3, req.getIssuer());
+      stmt.setString(4, req.getHandler());
+      stmt.setString(5, req.getEquipment());
+      stmt.setString(6, req.getCurrentLoc());
+      stmt.setString(7, req.getTargetLoc());
+
+      stmt.executeUpdate();
+      connection.commit();
+    } catch (SQLException e) {
+      System.out.println("Statement failed");
+    }
+    list.add(req);
   }
 
   public void updateMedEquipReq(MedEquipReq req) {
-    // TODO
+    Connection connection = null;
+    try {
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      PreparedStatement stmt =
+          connection.prepareStatement(
+              "UPDATE MEDEQUIPREQ SET status =?, handler =? WHERE RequestID =?");
+      stmt.setString(1, req.getStatus());
+      stmt.setString(2, req.getHandler());
+      stmt.setString(3, req.getRequestID());
+
+      stmt.executeUpdate();
+      connection.commit();
+    } catch (SQLException e) {
+      System.out.println("Update failed");
+    }
+    list.remove(req);
+    list.add(req);
   }
 
   public void deleteMedEquipReq(MedEquipReq req) {
-    // TODO
+    Connection connection = null;
+    try {
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      PreparedStatement stmt =
+          connection.prepareStatement("DELETE FROM MEDEQUIPREQ WHERE RequestID=?");
+      stmt.setString(1, req.getRequestID());
+      stmt.execute();
+      connection.commit();
+    } catch (SQLException e) {
+      System.out.println("Deletion failed");
+    }
+    list.remove(req);
   }
 }
