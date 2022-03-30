@@ -8,10 +8,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 // issues: getAllLocations doesn't work if the DB is disconnected, is this how it's supposed to
 // work?
@@ -64,5 +69,19 @@ public class LocationController {
   public void writeExcel(ActionEvent event) throws Exception {
     System.out.println("exporting CSV of LocationData");
     data = FXCollections.observableList(locDAO.getAllLocations());
+  }
+
+  @FXML
+  public void navHome(ActionEvent event) throws IOException {
+    System.out.println("navigating to home from locations");
+    Parent root =
+        FXMLLoader.load(
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/HomePage.fxml"));
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Scene scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
   }
 }

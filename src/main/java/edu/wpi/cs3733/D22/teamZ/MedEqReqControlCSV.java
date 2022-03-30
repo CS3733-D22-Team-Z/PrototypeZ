@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamZ;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,10 @@ public class MedEqReqControlCSV extends ControlCSV {
   private String[] headers = {
     "RequestID", "status", "issuer", "handler", "equipment", "currentLoc", "targetLoc"
   };
+
+  public MedEqReqControlCSV(File path) {
+    this.setPath(path);
+  }
 
   protected void writeMedReqCSV(List<MedEquipReq> in) {
     writeCSV(objToData(in), headers);
@@ -22,7 +27,7 @@ public class MedEqReqControlCSV extends ControlCSV {
 
     for (List<String> a : data) {
       ret.add(
-          new MedEquipReq(a.get(0), a.get(1), a.get(2), a.get(3), a.get(5), a.get(6), a.get(7)));
+          new MedEquipReq(a.get(0), a.get(1), a.get(2), a.get(3), a.get(4), a.get(5), a.get(6)));
     }
     return ret;
   }
