@@ -8,7 +8,7 @@ public class LocationDAOImpl implements ILocationDAO {
   List<Location> locations;
 
   public LocationDAOImpl() {
-    locations = new ArrayList<>();
+    locations = new ArrayList<Location>();
   }
 
   public List<Location> getAllLocations() {
