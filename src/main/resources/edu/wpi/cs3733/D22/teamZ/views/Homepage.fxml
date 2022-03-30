@@ -36,18 +36,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton alignment="TOP_CENTER" layoutX="15.0" layoutY="180.0" onAction="#toMedicalEquipmentRequest" prefHeight="101.0" prefWidth="98.0" text="Medical  Equipment Requests" textFill="#c4c4c4" wrapText="true">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0" translateY="-18.0">
-               <image>
-                  <Image url="@../images/table.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
+
       <JFXButton layoutX="-19.0" layoutY="57.0" onAction="#toHome" prefHeight="34.0" prefWidth="129.0" text="  Home" textFill="#0075ff">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -60,6 +49,18 @@
             </ImageView>
          </graphic>
       </JFXButton>
+        <JFXButton layoutX="2.0" layoutY="103.0" onAction="#toLocations" prefHeight="25.0" prefWidth="106.0" text="  Locations" textFill="#c4c4c4">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/map.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
       <JFXButton layoutY="143.0" onAction="#toLandingPage" prefHeight="25.0" prefWidth="106.0" text="  Landing " textFill="#c4c4c4">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -72,18 +73,18 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="2.0" layoutY="103.0" onAction="#toLocations" prefHeight="25.0" prefWidth="106.0" text="  Locations" textFill="#c4c4c4">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/map.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
+        <JFXButton alignment="TOP_CENTER" layoutX="15.0" layoutY="180.0" onAction="#toMedicalEquipmentRequest" prefHeight="101.0" prefWidth="98.0" text="Medical  Equipment Requests" textFill="#c4c4c4" wrapText="true">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true" translateX="-7.0" translateY="-18.0">
+                    <image>
+                        <Image url="@../images/table.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </JFXButton>
       <JFXButton fx:id="exitButton" buttonType="RAISED" layoutX="12.0" layoutY="363.0" onAction="#toExit" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #0075FF;" text="Exit" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
