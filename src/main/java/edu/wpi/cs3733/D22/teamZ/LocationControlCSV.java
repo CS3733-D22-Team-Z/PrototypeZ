@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.D22.teamZ;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,10 @@ public class LocationControlCSV extends ControlCSV {
   private String[] headers = {
     "NodeID", "xcoord", "ycoord", "floor", "building", "nodeType", "longName", "shortName"
   };
+
+  public LocationControlCSV(File path) {
+    this.setPath(path);
+  }
 
   protected void writeLocCSV(List<Location> in) {
     writeCSV(objToData(in), headers);
