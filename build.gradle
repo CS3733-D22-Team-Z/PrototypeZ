@@ -50,6 +50,10 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName
     }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 def codeCoverageExcludes = [
@@ -57,6 +61,27 @@ def codeCoverageExcludes = [
         'edu.wpi.cs3733.D22.teamZ.Main',
         'edu.wpi.cs3733.D22.teamZ.Location',
         'edu.wpi.cs3733.D22.teamZ.LocationDAOImpl',
+        'edu.wpi.cs3733.D22.teamZ.MedEquipReqDAOImpl',
+        'edu.wpi.cs3733.D22.teamZ.MedEquipReq',
+        'edu.wpi.cs3733.D22.teamZ.controllers.MealServiceController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.HomepageController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.ComputerServiceRequestController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.LaundryServiceController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.MedicalEquipmentDelivery',
+        'edu.wpi.cs3733.D22.teamZ.controllers.MedicineRequestController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.LanguageInterpreterController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.AppController',
+        'edu.wpi.cs3733.D22.teamZ.controllers.LabRequestController',
+
+        'edu.wpi.cs3733.D22.teamZ.controllers.LocationController'
+
+
+
+
+
+
+
+
 ]
 
 jacoco {

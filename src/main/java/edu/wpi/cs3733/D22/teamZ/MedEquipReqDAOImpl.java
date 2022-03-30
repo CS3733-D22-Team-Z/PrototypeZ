@@ -87,7 +87,7 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
       connection = DriverManager.getConnection("jdbc:derby:myDB");
       PreparedStatement stmt =
           connection.prepareStatement(
-              "INSERT INTO MEDEQUIPREQ (reqID, status, issuer, handler, equiptment, currentLoc, targetLoc)"
+              "INSERT INTO MEDEQUIPREQ (REQUESTID, STATUS, ISSUER, HANDLER, EQUIPMENT, CURRENTLOC, TARGETLOC) "
                   + "values (?, ?, ?, ?, ?, ?, ?)");
       stmt.setString(1, req.getRequestID());
       stmt.setString(2, req.getStatus());
