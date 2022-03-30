@@ -18,16 +18,20 @@ public class HomepageController {
 
   @FXML
   public void toLocations(ActionEvent event) throws IOException {
+    System.out.println("navigating to location from home");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/app.fxml"));
-    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/Location.fxml"));
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
+    stage.setScene(scene);
+    stage.show();
   }
 
   public void toLandingPage(ActionEvent event) throws IOException {
+
     Parent root =
         FXMLLoader.load(
             getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/app.fxml"));
@@ -38,26 +42,27 @@ public class HomepageController {
   }
 
   public void toMedicalEquipmentRequest(ActionEvent event) throws IOException {
+    System.out.println("navigating to location from home");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/app.fxml"));
-    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/MERL.fxml"));
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-    // button.setWrapText(true);
+    stage.setScene(scene);
+    stage.show();
   }
 
   public void toHome(ActionEvent event) throws IOException {
+    System.out.println("navigating to location from home");
     Parent root =
         FXMLLoader.load(
             getClass()
                 .getClassLoader()
-                .getResource("edu/wpi/cs3733/D22/teamZ/views/Homepage.fxml"));
-    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/HomePage.fxml"));
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
-    primaryStage.setScene(scene);
-    primaryStage.show();
+    stage.setScene(scene);
+    stage.show();
   }
 
   public void toExit(ActionEvent event) {
