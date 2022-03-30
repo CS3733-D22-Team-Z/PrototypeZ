@@ -11,6 +11,7 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     list = new ArrayList<>();
   }
 
+
   public List<MedEquipReq> getAllMedEquipReq() {
     Connection connection = null;
     try {
@@ -80,6 +81,7 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     }
     return temp;
   }
+
 
   public void addMedEquipReq(MedEquipReq req) {
     Connection connection = null;
