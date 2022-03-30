@@ -106,7 +106,7 @@ public class MedicalEquipmentDelivery {
 
     // FDEPT00102
     String target =
-        "F" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
+        "z" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
     temp.setTargetLoc(target);
 
     im1.addMedEquipReq(temp);
