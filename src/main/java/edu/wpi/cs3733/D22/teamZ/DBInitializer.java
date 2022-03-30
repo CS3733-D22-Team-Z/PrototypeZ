@@ -10,8 +10,16 @@ public class DBInitializer {
   private MedEqReqControlCSV medEqReqCSV;
 
   public DBInitializer() {
-    File locData = new File(System.getProperty("user.dir") + "\\TowerLocations.csv");
-    File medEquipReqData = new File(System.getProperty("user.dir") + "\\MedEquipReq.csv");
+    File locData =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + "TowerLocations.csv");
+    File medEquipReqData =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + "MedEquipReq.csv");
     locCSV = new LocationControlCSV(locData);
     medEqReqCSV = new MedEqReqControlCSV(medEquipReqData);
   }
