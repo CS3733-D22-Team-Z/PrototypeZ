@@ -25,7 +25,7 @@
          </font></JFXButton>
         <ImageView fitHeight="155.0" fitWidth="482.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../../../../OneDrive/Pictures/Saved%20Pictures/Brigham-Womens-Hospital.jpg" />
+                <Image url="@../images/Brigham-Womens-Hospital.jpg" />
             </image>
         </ImageView>
       <JFXButton buttonType="RAISED" layoutX="141.0" layoutY="329.0" onAction="#toMedicalEquipmentRequest" prefWidth="210.0" style="-fx-background-color: #0075FF;" text="Medical Equipment Requests      &gt;">
@@ -60,7 +60,7 @@
       </JFXButton>
       <ImageView fitHeight="82.0" fitWidth="70.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../../../Downloads/brigham-and-women-s-hospital-harvard-medical-school-faulkner-hospital-massachusetts-general-hospital-others-42fba519d985acb39be6ac5366809d87.png" />
+            <Image url="@../images/Hospital-Logo.png" />
          </image>
       </ImageView>
     </children>

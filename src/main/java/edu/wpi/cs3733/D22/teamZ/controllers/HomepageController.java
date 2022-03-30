@@ -40,7 +40,9 @@ public class HomepageController {
   public void toMedicalEquipmentRequest(ActionEvent event) throws IOException {
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/app.fxml"));
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/app.fxml"));
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     primaryStage.setScene(scene);

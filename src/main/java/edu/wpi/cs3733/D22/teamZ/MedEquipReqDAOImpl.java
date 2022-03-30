@@ -11,7 +11,6 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
     list = new ArrayList<>();
   }
 
-
   public List<MedEquipReq> getAllMedEquipReq() {
     Connection connection = null;
     try {
