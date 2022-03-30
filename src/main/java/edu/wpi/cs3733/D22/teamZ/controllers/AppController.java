@@ -30,7 +30,9 @@ public class AppController {
     System.out.println("navigating to lab from default");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/LabServiceRequest.fxml"));
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/LabServiceRequest.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
@@ -42,7 +44,9 @@ public class AppController {
     System.out.println("navigating to medicine from default");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/MedicineRequest.fxml"));
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/MedicineRequest.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
@@ -54,7 +58,9 @@ public class AppController {
     System.out.println("navigating to meal from default");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/Meal Service.fxml"));
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/Meal Service.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
@@ -80,7 +86,9 @@ public class AppController {
     System.out.println("navigating to laundry from default");
     Parent root =
         FXMLLoader.load(
-            getClass().getClassLoader().getResource("edu/wpi/cs3733/D22/teamZ/views/LaundryService.fxml"));
+            getClass()
+                .getClassLoader()
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/LaundryService.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
