@@ -74,11 +74,6 @@
                 <Font name="Segoe UI Bold" size="9.0" />
             </font>
         </Label>
-        <TextField layoutX="402.0" layoutY="170.0">
-            <effect>
-                <DropShadow />
-            </effect>
-        </TextField>
         <Label layoutX="24.0" layoutY="139.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-translate-x: 126; -fx-translate-y: 10;" text="Floor Number" textFill="#7b7b7b">
             <font>
                 <Font name="Segoe UI Bold" size="9.0" />
@@ -105,5 +100,13 @@
                 <Insets />
             </opaqueInsets>
         </TextField>
+      <TextField fx:id="enterStaffAssigned" layoutX="402.0" layoutY="173.0" onKeyReleased="#validateButton" promptText="Enter staff name">
+         <effect>
+            <DropShadow />
+         </effect>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
     </children>
 </AnchorPane>
