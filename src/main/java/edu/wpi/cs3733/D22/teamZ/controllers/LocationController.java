@@ -46,6 +46,7 @@ public class LocationController {
   @FXML
   private void loadDataFromDatabase(ActionEvent event) {
     System.out.println("loading data");
+    Locations.setItems(null);
 
     // get list of locations from db and transfer into ObservableList
     data = FXCollections.observableList(locDAO.getAllLocations());
@@ -61,7 +62,7 @@ public class LocationController {
     shortname.setCellValueFactory(new PropertyValueFactory<Location, String>("shortName"));
 
     // load data into tableView
-    Locations.setItems(null);
+
     Locations.setItems(data);
   }
 
