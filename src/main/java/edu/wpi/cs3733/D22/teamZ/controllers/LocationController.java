@@ -53,7 +53,7 @@ public class LocationController {
     building.setCellValueFactory(new PropertyValueFactory<Location, String>("building"));
     nodeType.setCellValueFactory(new PropertyValueFactory<Location, String>("nodeType"));
     longname.setCellValueFactory(new PropertyValueFactory<Location, String>("longName"));
-    shortname.setCellValueFactory (new PropertyValueFactory<Location, String>("shortName"));
+    shortname.setCellValueFactory(new PropertyValueFactory<Location, String>("shortName"));
 
     // load data into tableView
     Locations.setItems(null);
