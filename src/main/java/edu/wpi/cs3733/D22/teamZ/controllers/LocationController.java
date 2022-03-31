@@ -46,7 +46,7 @@ public class LocationController {
   @FXML
   private void loadDataFromDatabase(ActionEvent event) {
     System.out.println("loading data");
-    Locations.setItems(null);
+    Locations.getItems().clear();
 
     // get list of locations from db and transfer into ObservableList
     data = FXCollections.observableList(locDAO.getAllLocations());

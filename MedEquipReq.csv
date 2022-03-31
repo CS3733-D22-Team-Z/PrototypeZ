@@ -1,1 +1,12 @@
 RequestID,status,issuer,handler,equipment,currentLoc,targetLoc
+REQ1,Processing,Andrew,Jake,X-Ray,FDEPT00101,FDEPT00102
+REQ2,Processing,Pat,Jake,Pillow,FDEPT00101,FPATI00302
+REQ3,Processing,Pat,Jake,Pillow,FDEPT00101,zPATI00302
+REQ4,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ5,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ6,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ7,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ8,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ9,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ10,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101
+REQ11,Processing,Pat,Jake,IV,FDEPT00101,zDEPT00101

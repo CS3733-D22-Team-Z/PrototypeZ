@@ -37,7 +37,7 @@ public class MERLController implements Initializable {
   @FXML private JFXTreeTableView requestTable;
 
   // Button that re-fetches requests and refreshes table.
-  @FXML private JFXButton refreshButton;
+  // @FXML private JFXButton refreshButton;
 
   // Button that goes back to the default screen.
   @FXML private JFXButton backButton;
@@ -129,16 +129,16 @@ public class MERLController implements Initializable {
     System.out.println(buttonPressed.getText());
   }
 
-  // Called whenever the refresh button is clicked.
-  public void refreshClicked(ActionEvent event) {
-    System.out.println(refreshButton.getText());
-
-    // Reload requests
-    loadRequests();
-
-    // Reload table
-    createRRList();
-  }
+  //  // Called whenever the refresh button is clicked.
+  //  public void refreshClicked(ActionEvent event) {
+  //    System.out.println(refreshButton.getText());
+  //
+  //    // Reload requests
+  //    loadRequests();
+  //
+  //    // Reload table
+  //    createRRList();
+  //  }
 
   // Called whenever the filter select was set?
   public void filterSet(ActionEvent event) {

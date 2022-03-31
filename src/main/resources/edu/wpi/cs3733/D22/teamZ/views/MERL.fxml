@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTreeTableColumn?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamZ.controllers.MERLController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.D22.teamZ.controllers.MERLController">
     <children>
         <Label layoutX="-71.0" layoutY="36.0" style="-fx-translate-x: 126; -fx-translate-y: 10;" text="List of Medical Equipment Requests">
             <font>
@@ -25,11 +20,6 @@
                 <JFXTreeTableColumn fx:id="statusColumn" editable="false" prefWidth="99.20001220703125" reorderable="false" resizable="false" sortable="false" text="Status" />
             </columns>
         </JFXTreeTableView>
-        <JFXButton fx:id="refreshButton" layoutX="341.0" layoutY="66.0" onAction="#refreshClicked" prefWidth="66.0" ripplerFill="#0075ff" style="-fx-background-radius: 2; -fx-translate-y: 13; -fx-translate-x: 126; -fx-pref-width: 70; -fx-pref-height: 26; -fx-background-color: #0075FF; -fx-font-family: &quot;Segoe UI&quot;;" text="Refresh" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI Bold" size="10.0" />
-            </font>
-        </JFXButton>
         <HBox layoutX="414.0" layoutY="131.0">
             <children>
                 <JFXButton fx:id="idButton" onAction="#filterClicked" prefWidth="66.0" ripplerFill="#0075ff" style="-fx-background-radius: 2; -fx-pref-width: 25; -fx-pref-height: 26; -fx-background-color: #FFFFFF; -fx-font-family: &quot;Segoe UI&quot;;" text="ID">
