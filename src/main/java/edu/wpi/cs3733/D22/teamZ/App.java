@@ -27,7 +27,7 @@ public class App extends Application {
     text.setFill(Color.BROWN);
     text.setStroke(Color.BLUEVIOLET);
     text.setStrokeWidth(0.5);
-    Parent root = FXMLLoader.load(App.class.getResource("views/HomePage.fxml"));
+    Parent root = FXMLLoader.load(App.class.getResource("views/Homepage.fxml"));
     Scene scene = new Scene(root);
     primaryStage.setTitle("Custom Font");
     primaryStage.setScene(scene);
