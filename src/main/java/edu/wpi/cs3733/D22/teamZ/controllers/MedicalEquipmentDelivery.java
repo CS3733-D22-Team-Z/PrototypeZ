@@ -104,7 +104,13 @@ public class MedicalEquipmentDelivery {
     temp.setIssuer("Pat"); // temp
     temp.setCurrentLoc("FDEPT00101"); // temp
 
-    // FDEPT00102
+    /**
+     * Example: zDEPT00101
+     * z as lowercase team letter
+     * DEPT as nodeType
+     * 001 as Room Number
+     * 01 as floor number (L2, L1, 01, 02, 03)
+     */
     String target =
         "z" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
     temp.setTargetLoc(target);
