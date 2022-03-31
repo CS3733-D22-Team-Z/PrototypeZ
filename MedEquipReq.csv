@@ -1,4 +1,1 @@
 RequestID,status,issuer,handler,equipment,currentLoc,targetLoc
-REQ1,Processing,Andrew,Jake,X-Ray,FDEPT00101,FDEPT00102
-REQ2,Processing,Pat,Jake,Pillow,FDEPT00101,FPATI00302
-REQ3,Processing,Pat,Jake,Pillow,FDEPT00101,zPATI00302
