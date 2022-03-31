@@ -1,4 +1,4 @@
-nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
+NodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName
 zDEPT00101,400,150,1,Tower,DEPT,Center for International Medicine,CIM
 zDEPT00201,420,475,1,Tower,DEPT,Bretholtz Center for Patients and Families,Bretholtz WR
 zDEPT00301,577,254,1,Tower,DEPT,Multifaith Chapel,Chapel

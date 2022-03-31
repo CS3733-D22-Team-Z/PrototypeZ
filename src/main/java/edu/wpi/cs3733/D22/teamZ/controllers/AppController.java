@@ -154,7 +154,7 @@ public class AppController {
         FXMLLoader.load(
             getClass()
                 .getClassLoader()
-                .getResource("edu/wpi/cs3733/D22/teamZ/views/Homepage.fxml"));
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/HomePage.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);

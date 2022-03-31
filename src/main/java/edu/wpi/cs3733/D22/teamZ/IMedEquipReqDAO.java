@@ -12,4 +12,6 @@ public interface IMedEquipReqDAO {
   void updateMedEquipReq(MedEquipReq req);
 
   void deleteMedEquipReq(MedEquipReq req);
+
+  boolean exportToMedEquipReqCSV();
 }
