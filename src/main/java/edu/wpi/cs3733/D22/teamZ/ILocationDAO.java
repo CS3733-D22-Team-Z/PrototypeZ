@@ -12,4 +12,6 @@ public interface ILocationDAO {
   void updateLocation(Location loc);
 
   void deleteLocation(Location loc);
+
+  boolean exportToLocationCSV();
 }

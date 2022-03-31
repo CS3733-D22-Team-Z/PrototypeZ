@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.D22.teamZ;
 
+import java.io.File;
 import java.sql.*;
 import java.util.*;
 
 public class LocationDAOImpl implements ILocationDAO {
 
   List<Location> locations;
+  private LocationControlCSV locCSV;
 
   public LocationDAOImpl() {
     locations = new ArrayList<Location>();
@@ -128,5 +130,19 @@ public class LocationDAOImpl implements ILocationDAO {
       System.out.println("Statement failed");
     }
     locations.remove(loc);
+  }
+
+  public boolean exportToLocationCSV() {
+    Connection connection = null;
+    try {
+      File locData = new File(System.getProperty("user.dir") + "\\TowerLocations.csv");
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      locCSV = new LocationControlCSV(locData);
+      locCSV.writeLocCSV(getAllLocations());
+    } catch (SQLException e) {
+      System.out.println("Failed to export Locations table");
+      return false;
+    }
+    return true;
   }
 }

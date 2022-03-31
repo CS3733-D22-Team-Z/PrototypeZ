@@ -1,5 +1,4 @@
-﻿requestID,status,issuer,handler,equipment,currentLoc,targetLoc
-REQ1,Processing,Andrew,Jake,X-Ray,zDEPT00101,zDEPT00102
-REQ2,Processing,Claire,Neha,MRI,zDEPT00102,zDEPT00101
-REQ3,Done,Maya,Patrick,Pencil,zDEPT00101,zDEPT00102
-REQ4,Done,Casey,Alex,Paper,zDEPT00102, zDEPT00101
+RequestID,status,issuer,handler,equipment,currentLoc,targetLoc
+REQ1,Processing,Andrew,Jake,X-Ray,FDEPT00101,FDEPT00102
+REQ2,Processing,Pat,Jake,Pillow,FDEPT00101,FPATI00302
+REQ3,Processing,Pat,Jake,Pillow,FDEPT00101,zPATI00302

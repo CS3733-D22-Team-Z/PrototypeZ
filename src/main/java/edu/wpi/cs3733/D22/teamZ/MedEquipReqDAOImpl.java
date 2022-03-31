@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.D22.teamZ;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
   private List<MedEquipReq> list;
+  private MedEqReqControlCSV reqCSV;
 
   public MedEquipReqDAOImpl() {
     list = new ArrayList<>();
@@ -138,5 +140,20 @@ public class MedEquipReqDAOImpl implements IMedEquipReqDAO {
       System.out.println("Deletion failed");
     }
     list.remove(req);
+  }
+
+  public boolean exportToMedEquipReqCSV() {
+    Connection connection = null;
+    try {
+      File reqData = new File(System.getProperty("user.dir") + "\\MedEquipReq.csv");
+      connection = DriverManager.getConnection("jdbc:derby:myDB");
+      reqCSV = new MedEqReqControlCSV(reqData);
+
+      reqCSV.writeMedReqCSV(getAllMedEquipReq());
+    } catch (SQLException e) {
+      System.out.println("Failed to export MedEquipReq table");
+      return false;
+    }
+    return true;
   }
 }

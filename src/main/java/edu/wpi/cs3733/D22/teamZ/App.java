@@ -36,6 +36,10 @@ public class App extends Application {
 
   @Override
   public void stop() {
+    LocationDAOImpl locDAO = new LocationDAOImpl();
+    MedEquipReqDAOImpl reqDAO = new MedEquipReqDAOImpl();
+    locDAO.exportToLocationCSV();
+    reqDAO.exportToMedEquipReqCSV();
     log.info("Shutting Down");
   }
 }

@@ -46,6 +46,12 @@ public abstract class ControlCSV {
         e.printStackTrace();
       }
     }
+
+    try {
+      file.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   protected final List<List<String>> readCSV() throws IOException {
