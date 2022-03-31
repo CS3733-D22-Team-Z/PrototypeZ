@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 // LocationController controls Location.fxml, loads location data into a tableView on page
 public class DeleteOnceDone {
 
+    //test
     // init ui components
     @FXML private TableView<MedEquipReq> MedRequestsTable;
     @FXML private TableColumn<MedEquipReq, String> requestIDCol;
