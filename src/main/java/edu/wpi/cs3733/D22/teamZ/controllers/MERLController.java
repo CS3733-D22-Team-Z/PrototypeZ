@@ -57,7 +57,7 @@ public class MERLController implements Initializable {
 
   // List of identifiers for each
   private String[] identifiers = {
-          "ID", "Device", "Assignee", "Handler", "Status", "Current Location", "Target Location"
+    "ID", "Device", "Assignee", "Handler", "Status", "Current Location", "Target Location"
   };
 
   // List of MedEquipReq that represents raw data
@@ -92,14 +92,14 @@ public class MERLController implements Initializable {
     // Replace with lambda eventually
     // Set each column so that it displays the right value from each RequestRow
     idColumn.setCellValueFactory(
-            new Callback<
-                    TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
-              @Override
-              public ObservableValue<String> call(
-                      TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
-                return param.getValue().getValue().id;
-              }
-            });
+        new Callback<
+            TreeTableColumn.CellDataFeatures<RequestRow, String>, ObservableValue<String>>() {
+          @Override
+          public ObservableValue<String> call(
+              TreeTableColumn.CellDataFeatures<RequestRow, String> param) {
+            return param.getValue().getValue().id;
+          }
+        });
 
     deviceColumn.setCellValueFactory(param -> param.getValue().getValue().device);
     assigneeColumn.setCellValueFactory(param -> param.getValue().getValue().assignee);
@@ -109,14 +109,14 @@ public class MERLController implements Initializable {
 
     // Add a selected listener
     requestTable
-            .getSelectionModel()
-            .selectedItemProperty()
-            .addListener(
-                    (obs, oldSelection, newSelection) -> {
-                      RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
-                      System.out.println("Selected #" + sel.getValue().id.getValue());
-                      loadRow(sel.getValue().id.getValue());
-                    });
+        .getSelectionModel()
+        .selectedItemProperty()
+        .addListener(
+            (obs, oldSelection, newSelection) -> {
+              RecursiveTreeItem<RequestRow> sel = (RecursiveTreeItem) newSelection;
+              System.out.println("Selected #" + sel.getValue().id.getValue());
+              loadRow(sel.getValue().id.getValue());
+            });
     requestTable.setShowRoot(false);
 
     // Initialize requests
@@ -160,16 +160,16 @@ public class MERLController implements Initializable {
     // Iterate through each MedEquipReq in entity and create RequestRow for each
     for (MedEquipReq MERequest : rawRequests) {
       requests.add(
-              new RequestRow(
-                      MERequest.getRequestID(),
-                      MERequest.getEquipment(),
-                      MERequest.getIssuer(),
-                      MERequest.getStatus()));
+          new RequestRow(
+              MERequest.getRequestID(),
+              MERequest.getEquipment(),
+              MERequest.getIssuer(),
+              MERequest.getStatus()));
     }
 
     // Set root's children to requests, and add root to table.
     final TreeItem<RequestRow> root =
-            new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
+        new RecursiveTreeItem<>(requests, RecursiveTreeObject::getChildren);
     requestTable.setRoot(root);
   }
 
