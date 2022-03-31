@@ -75,6 +75,7 @@ public class MedicalEquipmentDelivery {
     Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
     Scene scene = new Scene(root);
     mainStage.setScene(scene);
+    mainStage.show();
   }
 
   @FXML
