@@ -46,7 +46,7 @@ public class LocationController {
   @FXML
   private void loadDataFromDatabase(ActionEvent event) {
     System.out.println("loading data");
-    Locations.setItems(null);
+    Locations.getItems().clear();
 
     // get list of locations from db and transfer into ObservableList
     data = FXCollections.observableList(locDAO.getAllLocations());
@@ -79,7 +79,7 @@ public class LocationController {
         FXMLLoader.load(
             getClass()
                 .getClassLoader()
-                .getResource("edu/wpi/cs3733/D22/teamZ/views/HomePage.fxml"));
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/Homepage.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
