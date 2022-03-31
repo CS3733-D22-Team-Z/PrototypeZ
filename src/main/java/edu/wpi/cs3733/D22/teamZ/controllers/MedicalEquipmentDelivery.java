@@ -28,6 +28,7 @@ public class MedicalEquipmentDelivery {
   @FXML private Label objectBodyText;
   @FXML private Label roomNumberLabel;
   @FXML private Label equipmentLabel;
+  @FXML private Label setSubmitStatus;
   @FXML private TextField enterRoomNumber;
   @FXML private TextField enterFloorNumber;
   @FXML private TextField enterNodeType;
@@ -120,7 +121,15 @@ public class MedicalEquipmentDelivery {
         "z" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
     temp.setTargetLoc(target);
 
-    im1.addMedEquipReq(temp);
+    try {
+      im1.addMedEquipReq(temp);
+      setSubmitStatus.setText("Request Sent");
+      System.out.println("Submitted Medical Equipment Delivery Request");
+    } catch (Exception e) {
+      System.out.println("Submission Failed");
+      setSubmitStatus.setText("Submission Failed");
+      e.printStackTrace();
+    }
   }
 
   @FXML

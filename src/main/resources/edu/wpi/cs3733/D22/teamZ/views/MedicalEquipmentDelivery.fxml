@@ -108,5 +108,10 @@
             <Insets />
          </opaqueInsets>
       </TextField>
+      <Label fx:id="setSubmitStatus" layoutX="20.0" layoutY="358.0" prefHeight="17.0" prefWidth="158.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-translate-x: 126; -fx-translate-y: 10;" textFill="#7b7b7b">
+         <font>
+            <Font name="Segoe UI Bold" size="9.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
