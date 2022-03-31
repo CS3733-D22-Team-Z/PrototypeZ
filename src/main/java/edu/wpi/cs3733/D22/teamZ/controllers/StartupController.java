@@ -2,8 +2,7 @@ package edu.wpi.cs3733.D22.teamZ.controllers;
 
 import edu.wpi.cs3733.D22.teamZ.Location;
 import edu.wpi.cs3733.D22.teamZ.LocationDAOImpl;
-import java.io.*;
-import java.sql.*;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,11 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-// issues: getAllLocations doesn't work if the DB is disconnected, is this how it's supposed to
-// work?
-
-// LocationController controls Location.fxml, loads location data into a tableView on page
-public class LocationController {
+public class StartupController {
 
   // init ui components
   @FXML private TableView<Location> Locations;
@@ -46,7 +41,7 @@ public class LocationController {
   @FXML
   private void loadDataFromDatabase(ActionEvent event) {
     System.out.println("loading data");
-    Locations.setItems(null);
+    Locations.getItems().clear();
 
     // get list of locations from db and transfer into ObservableList
     data = FXCollections.observableList(locDAO.getAllLocations());
@@ -79,7 +74,7 @@ public class LocationController {
         FXMLLoader.load(
             getClass()
                 .getClassLoader()
-                .getResource("edu/wpi/cs3733/D22/teamZ/views/HomePage.fxml"));
+                .getResource("edu/wpi/cs3733/D22/teamZ/views/Homepage.fxml"));
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = new Scene(root);
     stage.setScene(scene);
