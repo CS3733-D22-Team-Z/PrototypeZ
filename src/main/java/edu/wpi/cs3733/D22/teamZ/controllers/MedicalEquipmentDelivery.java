@@ -31,7 +31,9 @@ public class MedicalEquipmentDelivery {
   @FXML private TextField enterRoomNumber;
   @FXML private TextField enterFloorNumber;
   @FXML private TextField enterNodeType;
+  @FXML private TextField enterStaffAssigned;
   @FXML private ChoiceBox equipmentDropDown;
+  @FXML private ChoiceBox statusDropDown;
 
   private ObservableList<Location> locationList;
   private ObservableList<MedEquipReq> equipmentList;
@@ -65,8 +67,10 @@ public class MedicalEquipmentDelivery {
       System.out.println(model.getNodeID());
     }
 
+    // examples
     equipmentDropDown.setItems(FXCollections.observableArrayList("Bed", "IV", "Pillow"));
-    // //example
+    statusDropDown.setItems(FXCollections.observableArrayList("Pending", "Approved", "Denied"));
+    statusDropDown.setValue("Pending");
   }
 
   @FXML
@@ -82,7 +86,9 @@ public class MedicalEquipmentDelivery {
     enterRoomNumber.clear();
     enterFloorNumber.clear();
     enterNodeType.clear();
+    enterStaffAssigned.clear();
     equipmentDropDown.setValue(null);
+    statusDropDown.setValue(null);
   }
 
   @FXML
@@ -90,7 +96,9 @@ public class MedicalEquipmentDelivery {
     System.out.println("Room Number: " + enterRoomNumber.getText());
     System.out.println("Floor Number: " + enterFloorNumber.getText());
     System.out.println("nodeType: " + enterNodeType.getText());
+    System.out.println("staff assigned: " + enterStaffAssigned.getText());
     System.out.println("Equipment Selected: " + equipmentDropDown.getValue());
+    System.out.println("Status Selected: " + statusDropDown.getValue());
 
     MedEquipReq lastestReq = equipmentList.get(equipmentList.size() - 1);
     String id = lastestReq.getRequestID();
@@ -101,15 +109,12 @@ public class MedicalEquipmentDelivery {
     temp.setStatus("Processing"); // default
     temp.setEquipment(equipmentDropDown.getValue().toString());
     temp.setHandler("Jake"); // temp
-    temp.setIssuer("Pat"); // temp
-    temp.setCurrentLoc("FDEPT00101"); // temp
+    temp.setIssuer(enterStaffAssigned.getText());
+    temp.setCurrentLoc("zDEPT00101"); // temp
 
     /**
-     * Example: zDEPT00101
-     * z as lowercase team letter
-     * DEPT as nodeType
-     * 001 as Room Number
-     * 01 as floor number (L2, L1, 01, 02, 03)
+     * Example: zDEPT00101 z as lowercase team letter DEPT as nodeType 001 as Room Number 01 as
+     * floor number (L2, L1, 01, 02, 03)
      */
     String target =
         "z" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
@@ -123,8 +128,12 @@ public class MedicalEquipmentDelivery {
     if (!enterRoomNumber.getText().trim().isEmpty()
         && !enterFloorNumber.getText().trim().isEmpty()
         && !enterNodeType.getText().trim().isEmpty()
-        && !equipmentDropDown.getSelectionModel().isEmpty()) {
+        && !enterStaffAssigned.getText().trim().isEmpty()
+        && !equipmentDropDown.getSelectionModel().isEmpty()
+        && !statusDropDown.getSelectionModel().isEmpty()) {
       submitButton.setDisable(false);
+    } else {
+      submitButton.setDisable(true);
     }
   }
 }
