@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.D22.teamZ.controllers;
 
-import edu.wpi.cs3733.D22.teamZ.Location;
-import edu.wpi.cs3733.D22.teamZ.LocationDAOImpl;
+import edu.wpi.cs3733.D22.teamZ.*;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,20 +30,40 @@ public class StartupController {
   @FXML private TableColumn<Location, String> shortname;
   @FXML private Button loadData;
 
+  // init ui components
+  @FXML private TableView<MedEquipReq> MedRequestsTable;
+  @FXML private TableColumn<MedEquipReq, String> requestIDCol;
+  @FXML private TableColumn<MedEquipReq, String> statusCol;
+  @FXML private TableColumn<MedEquipReq, String> issuerCol;
+  @FXML private TableColumn<MedEquipReq, String> handlerCol;
+  @FXML private TableColumn<MedEquipReq, String> equipmentCol;
+  @FXML private TableColumn<MedEquipReq, String> currentLocCol;
+  @FXML private TableColumn<MedEquipReq, String> targetLocCol;
+
   // init LocationDAOImpl to getAllLocations from db
   LocationDAOImpl locDAO = new LocationDAOImpl();
 
   // create ObservableList to load locations into tableView
   private ObservableList<Location> data;
 
+  // init MedEquipReqDAOImpl
+  IMedEquipReqDAO medDAO = new MedEquipReqDAOImpl();
+
+  // create ObservableList to load MedEquipDAO into tableView
+  private ObservableList<MedEquipReq> dataMed;
+
   // loadDataFromDatabase when button loadData is clicked
   @FXML
   private void loadDataFromDatabase(ActionEvent event) {
     System.out.println("loading data");
     Locations.getItems().clear();
+    MedRequestsTable.getItems().clear();
 
     // get list of locations from db and transfer into ObservableList
     data = FXCollections.observableList(locDAO.getAllLocations());
+
+    // get list of locations from db and transfer into ObservableList
+    dataMed = FXCollections.observableList(medDAO.getAllMedEquipReq());
 
     // link columnNames to data
     nodeID.setCellValueFactory(new PropertyValueFactory<Location, String>("nodeID"));
@@ -56,15 +75,25 @@ public class StartupController {
     longname.setCellValueFactory(new PropertyValueFactory<Location, String>("longName"));
     shortname.setCellValueFactory(new PropertyValueFactory<Location, String>("shortName"));
 
+    requestIDCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("requestID"));
+    statusCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("status"));
+    issuerCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("issuer"));
+    handlerCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("handler"));
+    equipmentCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("equipment"));
+    currentLocCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("currentLoc"));
+    targetLocCol.setCellValueFactory(new PropertyValueFactory<MedEquipReq, String>("targetLoc"));
+
     // load data into tableView
 
     Locations.setItems(data);
+    MedRequestsTable.setItems(dataMed);
   }
 
   @FXML
   public void writeExcel(ActionEvent event) throws Exception {
     System.out.println("exporting CSV of LocationData");
     data = FXCollections.observableList(locDAO.getAllLocations());
+    dataMed = FXCollections.observableList(medDAO.getAllMedEquipReq());
   }
 
   @FXML
