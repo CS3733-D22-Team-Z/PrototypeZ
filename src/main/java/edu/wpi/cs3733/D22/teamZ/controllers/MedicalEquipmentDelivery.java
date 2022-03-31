@@ -103,7 +103,7 @@ public class MedicalEquipmentDelivery {
     temp.setEquipment(equipmentDropDown.getValue().toString());
     temp.setHandler("Jake"); // temp
     temp.setIssuer("Pat"); // temp
-    temp.setCurrentLoc("FDEPT00101"); // temp
+    temp.setCurrentLoc("zDEPT00101"); // temp
 
     // FDEPT00102
     String target =
