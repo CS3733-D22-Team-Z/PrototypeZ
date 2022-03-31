@@ -29,7 +29,7 @@ public class App extends Application {
     text.setStrokeWidth(0.5);
     Parent root = FXMLLoader.load(App.class.getResource("views/Homepage.fxml"));
     Scene scene = new Scene(root);
-    primaryStage.setTitle("Custom Font");
+    primaryStage.setTitle("Team Z Prototype");
     primaryStage.setScene(scene);
     primaryStage.show();
   }
