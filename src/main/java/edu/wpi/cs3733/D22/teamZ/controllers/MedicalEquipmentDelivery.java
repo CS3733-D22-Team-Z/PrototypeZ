@@ -75,6 +75,7 @@ public class MedicalEquipmentDelivery {
     Parent root = FXMLLoader.load(App.class.getResource("views/app.fxml"));
     Scene scene = new Scene(root);
     mainStage.setScene(scene);
+    mainStage.show();
   }
 
   @FXML
@@ -102,11 +103,11 @@ public class MedicalEquipmentDelivery {
     temp.setEquipment(equipmentDropDown.getValue().toString());
     temp.setHandler("Jake"); // temp
     temp.setIssuer("Pat"); // temp
-    temp.setCurrentLoc("FDEPT00101"); // temp
+    temp.setCurrentLoc("zDEPT00101"); // temp
 
     // FDEPT00102
     String target =
-        "F" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
+        "z" + enterNodeType.getText() + enterRoomNumber.getText() + enterFloorNumber.getText();
     temp.setTargetLoc(target);
 
     im1.addMedEquipReq(temp);
